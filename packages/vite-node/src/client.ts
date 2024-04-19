@@ -204,7 +204,7 @@ export class ViteNodeRunner {
       // cached module
       if (mod.promise)
         return await mod.promise
-
+      // ! 请求 模块
       const promise = this.directRequest(id, fsPath, callstack)
       Object.assign(mod, { promise, evaluated: false })
       return await promise
@@ -318,8 +318,8 @@ export class ViteNodeRunner {
       get: (target, p, receiver) => {
         if (Reflect.has(target, p))
           return Reflect.get(target, p, receiver)
-        return Reflect.get(Object.prototype, p, receiver)
       },
+      return Reflect.get(Object.prototype, p, receiver)
       getPrototypeOf: () => Object.prototype,
       set: (_, p, value) => {
         // treat "module.exports =" the same as "exports.default =" to not have nested "default.default",
@@ -383,6 +383,8 @@ export class ViteNodeRunner {
     // adjust `WRAPPER_LENGTH` variable in packages/coverage-v8/src/provider.ts if you do change this
     const context = this.prepareContext({
       // esm transformed by Vite
+      // ? import 被改写成了 __vite_ssr_import__ ？
+      // 这是在 vite中被处理的
       __vite_ssr_import__: request,
       __vite_ssr_dynamic_import__: request,
       __vite_ssr_exports__: exports,
@@ -421,7 +423,7 @@ export class ViteNodeRunner {
       lineOffset: 0,
       columnOffset: -codeDefinition.length,
     }
-
+    // 通过 vm.runInThisContext 来执行模块代码
     const fn = vm.runInThisContext(code, options)
     await fn(...Object.values(context))
   }

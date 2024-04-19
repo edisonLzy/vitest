@@ -479,7 +479,13 @@ function createVitest(): VitestUtils {
       _mocker.queueMock(
         path,
         importer,
-        factory ? () => factory(() => _mocker.importActual(path, importer, _mocker.getMockContext().callstack)) : undefined,
+        factory
+          ? () => {
+              console.log('xxx')
+
+              return factory(() => _mocker.importActual(path, importer, _mocker.getMockContext().callstack))
+            }
+          : undefined,
         true,
       )
     },

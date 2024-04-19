@@ -5,9 +5,12 @@
   "scripts": {
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "dev": "vite-node --watch ./src/*.ts",
+    "dev": "vite-node --watch ./src/rc-motion.ts",
     "debug:dev": "DEBUG=vite-node:* node --inspect-brk ../../packages/vite-node/dist/cli.cjs --watch ./src/*",
     "debug": "node --inspect-brk ../../packages/vite-node/dist/cli.cjs"
+  },
+  "dependencies": {
+    "rc-motion": "^2.9.0"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.3",

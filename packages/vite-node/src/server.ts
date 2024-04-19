@@ -257,6 +257,7 @@ export class ViteNodeServer {
     }
     else {
       const start = performance.now()
+      // 转换模块内容
       const r = await this._transformRequest(id, filePath, transformMode)
       duration = performance.now() - start
       result = { code: r?.code, map: r?.map as any }

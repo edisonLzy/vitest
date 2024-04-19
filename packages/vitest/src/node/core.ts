@@ -415,7 +415,7 @@ export class Vitest {
     if (files.length) {
       // populate once, update cache on watch
       await this.cache.stats.populateStats(this.config.root, files)
-
+      // ! 开始运行测试文件
       await this.runFiles(files, true)
     }
 

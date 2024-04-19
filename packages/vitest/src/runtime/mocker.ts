@@ -174,6 +174,7 @@ export class VitestMocker {
     VitestMocker.pendingIds = []
   }
 
+  // 调用 factory 函数
   private async callFunctionMock(dep: string, mock: MockFactory) {
     const cached = this.moduleCache.get(dep)?.exports
     if (cached)

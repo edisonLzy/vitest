@@ -170,7 +170,7 @@ export function createCLI(options: CLIOptions = {}) {
     .action(() => {
       throw new Error(`Running typecheck via "typecheck" command is removed. Please use "--typecheck" to run your regular tests alongside typechecking, or "--typecheck.only" to run only typecheck tests.`)
     })
-
+  // 默认执行的命令
   cli
     .command('[...filters]', undefined, options)
     .action((filters, options) => start('test', filters, options))

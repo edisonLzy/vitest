@@ -9,7 +9,12 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run"
   },
+  "dependencies": {
+    "rc-motion": "^2.9.0",
+    "react": "^18.2.0"
+  },
   "devDependencies": {
+    "@types/react": "^18.2.79",
     "@vitest/ui": "latest",
     "vite": "latest",
     "vitest": "latest"
